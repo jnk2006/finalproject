@@ -70,6 +70,13 @@
         <div class="top-right links">
             @auth
                 <a href="{{ url('/home') }}">Home</a>
+                <script>
+                    var botmanWidget = {
+                        frameEndPoint: '/home/naveena/PhpstormProjects/finproj/chat/resources/views/chatframe.blade.php',
+                        title: 'ChatBot'
+                    };
+                </script>
+                <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
             @else
                 <a href="{{ route('login') }}">Login</a>
                 <a href="{{ route('register') }}">Register</a>

@@ -15,18 +15,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 Route::get('widget', 'BotManController@widget');
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 Route::get('/botman/tinker', 'BotManController@tinker')->name('tinker');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/user/{user_id}/profile', 'ProfileController@create')->name('profile.create');
 Route::get('/user/{user_id}/profile/{profile_id}', 'ProfileController@show')->name('profile.show');
+Route::get('/user/{user_id}/profile/{profile_id}/edit', 'ProfileController@edit')->name('profile.edit');
+Route::post('/user/{user_id}/profile/', 'ProfileController@store')->name('profile.store');
+Route::patch('/user/{user_id}/profile/{profile_id}', 'ProfileController@update')->name('profile.update');
+Route::delete('/user/{user_id}/profile/{profile_id}', 'ProfileController@destroy')->name('profile.destroy');
 
+Route::get('/question/{question_id}/answer/create', 'AnswerController@create')->name('answer.create');
 Route::get('/question/{question_id}/answer/{answer_id}', 'AnswerController@show')->name('answer.show');
+Route::get('/question/{question_id}/answer/{answer_id}/edit', 'AnswerController@edit')->name('answer.edit');
+Route::post('/question/{question_id}/answer/', 'AnswerController@store')->name('answer.store');
+Route::patch('/question/{question_id}/answer/{answer_id}', 'AnswerController@update')->name('answer.update');
+Route::delete('/question/{question_id}/answer/{answer_id}', 'AnswerController@destroy')->name('answer.destroy');
 
 Route::resources([
     'question' => 'QuestionController',
 ]);
+
+
+
